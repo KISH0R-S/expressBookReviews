@@ -1,0 +1,107 @@
+============================================================
+  Online Bookstore REST API — How to Run
+============================================================
+
+PROJECT LOCATION
+----------------
+C:\Users\Administrator\Documents\projects\expressBookReviews\
+└── final_project\
+    ├── index.js
+    ├── package.json
+    └── router\
+        ├── general.js      (public routes + async/await with Axios)
+        ├── auth_users.js   (login, JWT, review CRUD)
+        └── booksdb.js      (book data)
+
+GITHUB REPOSITORY
+-----------------
+https://github.com/KISH0R-S/expressBookReviews
+
+GENERAL.JS (Task 11) URL
+------------------------
+https://github.com/KISH0R-S/expressBookReviews/blob/main/final_project/router/general.js
+
+------------------------------------------------------------
+  SETUP & RUN
+------------------------------------------------------------
+
+Step 1 — Open terminal and navigate to project:
+
+    cd C:\Users\Administrator\Documents\projects\expressBookReviews\final_project
+
+Step 2 — Install dependencies (first time only):
+
+    npm install
+
+Step 3 — Start the server:
+
+    node index.js
+
+    Server runs at: http://localhost:5000
+
+Step 4 — Stop the server:
+
+    Press Ctrl+C
+
+------------------------------------------------------------
+  DEMO COMMANDS (run in a second terminal)
+------------------------------------------------------------
+
+1. GET ALL BOOKS
+   curl -s http://localhost:5000/
+
+2. GET BOOK BY ISBN
+   curl -s http://localhost:5000/isbn/1
+
+3. GET BOOKS BY AUTHOR
+   curl -s "http://localhost:5000/author/Jane%20Austen"
+
+4. GET BOOKS BY TITLE
+   curl -s "http://localhost:5000/title/Things%20Fall%20Apart"
+
+5. GET BOOK REVIEWS
+   curl -s http://localhost:5000/review/1
+
+6. REGISTER A NEW USER
+   curl -s -X POST http://localhost:5000/register \
+     -H "Content-Type: application/json" \
+     -d '{"username":"demo","password":"demo123"}'
+
+7. LOGIN (saves session cookie)
+   curl -s -X POST http://localhost:5000/customer/login \
+     -H "Content-Type: application/json" \
+     -d '{"username":"demo","password":"demo123"}' \
+     -c cookies.txt
+
+8. ADD / UPDATE A REVIEW (requires login)
+   curl -s -X PUT "http://localhost:5000/customer/auth/review/1?review=Amazing!" \
+     -b cookies.txt -c cookies.txt
+
+9. DELETE A REVIEW (requires login)
+   curl -s -X DELETE "http://localhost:5000/customer/auth/review/1" \
+     -b cookies.txt -c cookies.txt
+
+------------------------------------------------------------
+  TECH STACK
+------------------------------------------------------------
+
+  Runtime   : Node.js
+  Framework : Express.js
+  Auth      : JWT (jsonwebtoken) + express-session
+  HTTP      : Axios (async/await)
+  Port      : 5000
+
+------------------------------------------------------------
+  NOTES
+------------------------------------------------------------
+
+- cookies.txt stores your session after login.
+  Always use -b cookies.txt and -c cookies.txt together
+  for authenticated requests (add/delete review).
+
+- The book data is in-memory (booksdb.js).
+  Reviews reset every time the server restarts.
+
+- To use a different port, change PORT in index.js.
+
+============================================================
