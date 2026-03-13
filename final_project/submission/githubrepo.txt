@@ -1,0 +1,10 @@
+Command:
+curl -s -H "Authorization: token <YOUR_GITHUB_TOKEN>" https://api.github.com/repos/KISH0R-S/expressBookReviews
+
+Output:
+{
+  "full_name": "KISH0R-S/expressBookReviews",
+  "fork": true,
+  "parent": "ibm-developer-skills-network/expressBookReviews",
+  "html_url": "https://github.com/KISH0R-S/expressBookReviews"
+}

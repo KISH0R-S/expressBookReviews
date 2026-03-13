@@ -1,0 +1,5 @@
+Command:
+curl -s "http://localhost:5000/author/Jane%20Austen"
+
+Output:
+{"books":[{"author":"Jane Austen","title":"Pride and Prejudice","reviews":{}}]}
